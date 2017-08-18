@@ -4,24 +4,36 @@
 #
 Name     : XStatic-JQuery-Migrate
 Version  : 1.2.1.1
-Release  : 24
-URL      : https://pypi.python.org/packages/source/X/XStatic-JQuery-Migrate/XStatic-JQuery-Migrate-1.2.1.1.tar.gz
-Source0  : https://pypi.python.org/packages/source/X/XStatic-JQuery-Migrate/XStatic-JQuery-Migrate-1.2.1.1.tar.gz
+Release  : 25
+URL      : http://pypi.debian.net/XStatic-JQuery-Migrate/XStatic-JQuery-Migrate-1.2.1.1.tar.gz
+Source0  : http://pypi.debian.net/XStatic-JQuery-Migrate/XStatic-JQuery-Migrate-1.2.1.1.tar.gz
 Summary  : JQuery-Migrate 1.2.1 (XStatic packaging standard)
 Group    : Development/Tools
 License  : MIT
 Requires: XStatic-JQuery-Migrate-python
+BuildRequires : pbr
+BuildRequires : pip
 BuildRequires : python-dev
+BuildRequires : python3-dev
 BuildRequires : setuptools
 
 %description
-XStatic-JQuery-Migrate
 --------------
-JQuery-Migrate JavaScript library packaged for setuptools (easy_install) / pip.
+        
+        JQuery-Migrate JavaScript library packaged for setuptools (easy_install) / pip.
+        
+        This package is intended to be used by **any** project that needs these files.
+        
+        It intentionally does **not** provide any extra code except some metadata
+        **nor** has any extra requirements. You MAY use some minimal support code from
+        the XStatic base package, if you like.
+        
+        You can find more info about the xstatic packaging way in the package `XStatic`.
 
 %package python
 Summary: python components for the XStatic-JQuery-Migrate package.
 Group: Default
+Provides: xstatic-jquery-migrate-python
 
 %description python
 python components for the XStatic-JQuery-Migrate package.
@@ -31,15 +43,27 @@ python components for the XStatic-JQuery-Migrate package.
 %setup -q -n XStatic-JQuery-Migrate-1.2.1.1
 
 %build
-%{__python} setup.py build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C
+export SOURCE_DATE_EPOCH=1503088678
+python2 setup.py build -b py2
+python3 setup.py build -b py3
 
 %install
+export SOURCE_DATE_EPOCH=1503088678
 rm -rf %{buildroot}
-%{__python} setup.py install --root=%{buildroot}
+python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+echo ----[ mark ]----
+cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
+echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
+/usr/lib/python3*/*
