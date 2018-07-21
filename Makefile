@@ -1,5 +1,5 @@
 PKG_NAME := XStatic-JQuery-Migrate
-URL := http://pypi.debian.net/XStatic-JQuery-Migrate/XStatic-JQuery-Migrate-1.2.1.1.tar.gz
-
+URL = http://pypi.debian.net/XStatic-JQuery-Migrate/XStatic-JQuery-Migrate-1.2.1.1.tar.gz
+ARCHIVES = 
 
 include ../common/Makefile.common
