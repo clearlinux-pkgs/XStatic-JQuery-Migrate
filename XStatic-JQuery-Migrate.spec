@@ -4,7 +4,7 @@
 #
 Name     : XStatic-JQuery-Migrate
 Version  : 1.2.1.2
-Release  : 35
+Release  : 36
 URL      : https://files.pythonhosted.org/packages/18/24/cd2802e16668870860e087a4188415a60df2a9dc721c1ef7eb7fc4bcc546/XStatic-JQuery-Migrate-1.2.1.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/18/24/cd2802e16668870860e087a4188415a60df2a9dc721c1ef7eb7fc4bcc546/XStatic-JQuery-Migrate-1.2.1.2.tar.gz
 Summary  : JQuery-Migrate 1.2.1 (XStatic packaging standard)
